@@ -15,9 +15,10 @@ type PokeApiPokemon = {
   species: { name: string; url: string };
   sprites: { front_default: string };
 };
-
-export const getPokemon = async () => {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon");
+export const getPokemon = async (offset: number) => {
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`
+  );
   const data: PokeApiResults = await response.json();
 
   return Promise.all(
